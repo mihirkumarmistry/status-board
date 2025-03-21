@@ -1,0 +1,6 @@
+@if (collectionSize > 0) {
+    <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [maxSize]="4" [(page)]="page" (pageChange)="onPageChange($event)">
+        <ng-template ngbPaginationPrevious>Prev</ng-template>
+        <ng-template ngbPaginationNext>Next</ng-template>
+    </ngb-pagination>
+}

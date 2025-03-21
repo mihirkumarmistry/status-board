@@ -1,0 +1,137 @@
+[
+    {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "johndoe@example.com",
+        "password": "password123",
+        "type": "Admin",
+        "isActive": true
+    },
+    {
+        "id": 2,
+        "firstName": "Alice",
+        "lastName": "Smith",
+        "email": "alicesmith@example.com",
+        "password": "alicePass456",
+        "type": "Doctor",
+        "isActive": true
+    },
+    {
+        "id": 3,
+        "firstName": "Bob",
+        "lastName": "Johnson",
+        "email": "bobjohnson@example.com",
+        "password": "bobSecret789",
+        "type": "Staff",
+        "isActive": true
+    },
+    {
+        "id": 4,
+        "firstName": "Sarah",
+        "lastName": "Williams",
+        "email": "sarahwilliams@example.com",
+        "password": "sarahPass123",
+        "type": "Doctor",
+        "isActive": false
+    },
+    {
+        "id": 5,
+        "firstName": "Michael",
+        "lastName": "Brown",
+        "email": "michaelbrown@example.com",
+        "password": "mike12345",
+        "type": "Staff",
+        "isActive": true
+    },
+    {
+        "id": 6,
+        "firstName": "Jessica",
+        "lastName": "Davis",
+        "email": "jessicadavis@example.com",
+        "password": "jessica456",
+        "type": "Doctor",
+        "isActive": true
+    },
+    {
+        "id": 7,
+        "firstName": "David",
+        "lastName": "Wilson",
+        "email": "davidwilson@example.com",
+        "password": "davidSecure8",
+        "type": "Admin",
+        "isActive": true
+    },
+    {
+        "id": 8,
+        "firstName": "Emily",
+        "lastName": "Miller",
+        "email": "emilymiller@example.com",
+        "password": "emily7890",
+        "type": "Staff",
+        "isActive": false
+    },
+    {
+        "id": 9,
+        "firstName": "Daniel",
+        "lastName": "Martinez",
+        "email": "danielmartinez@example.com",
+        "password": "danPass123",
+        "type": "Doctor",
+        "isActive": true
+    },
+    {
+        "id": 10,
+        "firstName": "Sophia",
+        "lastName": "Garcia",
+        "email": "sophiagarcia@example.com",
+        "password": "sophia1234",
+        "type": "Admin",
+        "isActive": true
+    },
+    {
+        "id": 11,
+        "firstName": "James",
+        "lastName": "Anderson",
+        "email": "jamesanderson@example.com",
+        "password": "jamesSecure1",
+        "type": "Staff",
+        "isActive": true
+    },
+    {
+        "id": 12,
+        "firstName": "Oliver",
+        "lastName": "Thomas",
+        "email": "oliverthomas@example.com",
+        "password": "oliver4567",
+        "type": "Doctor",
+        "isActive": false
+    },
+    {
+        "id": 13,
+        "firstName": "Ava",
+        "lastName": "Taylor",
+        "email": "avataylor@example.com",
+        "password": "avaSecure89",
+        "type": "Staff",
+        "isActive": true
+    },
+    {
+        "id": 14,
+        "firstName": "William",
+        "lastName": "Moore",
+        "email": "williammoore@example.com",
+        "password": "william1234",
+        "type": "Doctor",
+        "isActive": true
+    },
+    {
+        "id": 15,
+        "firstName": "Mia",
+        "lastName": "Jackson",
+        "email": "miajackson@example.com",
+        "password": "mia78910",
+        "type": "Admin",
+        "isActive": true
+    }
+]

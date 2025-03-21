@@ -1,0 +1,173 @@
+[
+    {
+      "id": 1,
+      "patientId": 101,
+      "appoinemntId": 1001,
+      "allergies": [
+        {
+          "id": 1,
+          "patientId": 101,
+          "medicalHistoryId": 1,
+          "key": "Peanut",
+          "value": "Severe"
+        },
+        {
+          "id": 2,
+          "patientId": 101,
+          "medicalHistoryId": 1,
+          "key": "Penicillin",
+          "value": "Mild"
+        }
+      ],
+      "previousMedicalConditions": [
+        {
+          "id": 3,
+          "patientId": 101,
+          "medicalHistoryId": 1,
+          "key": "Hypertension",
+          "value": "Controlled with medication"
+        },
+        {
+          "id": 4,
+          "patientId": 101,
+          "medicalHistoryId": 1,
+          "key": "Diabetes",
+          "value": "Type 2"
+        }
+      ],
+      "medications": [
+        {
+          "id": 1,
+          "patientId": 101,
+          "appoinmentId": 1001,
+          "medicalHistoryId": 1,
+          "name": "Metformin",
+          "dosage": "500mg",
+          "frequency": "Twice a day",
+          "isCurrent": "Yes"
+        }
+      ],
+      "surgicalHistory": [
+        {
+          "id": 1,
+          "patientId": 101,
+          "medicalHistoryId": 1,
+          "procedureName": "Appendectomy",
+          "procedureDate": "2020-08-15",
+          "doctorName": "Dr. Smith",
+          "hospitalName": "City Hospital"
+        }
+      ],
+      "diagnosticTest": [
+        {
+          "id": 1,
+          "patientId": 101,
+          "medicalHistoryId": 1,
+          "labTestName": "Blood Test",
+          "labTestDate": "2023-05-20",
+          "result": "Normal",
+          "image": "blood_test_report.png",
+          "imageFindings": "All parameters within normal range"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "patientId": 102,
+      "appoinemntId": 1002,
+      "allergies": [
+        {
+          "id": 5,
+          "patientId": 102,
+          "medicalHistoryId": 2,
+          "key": "Shellfish",
+          "value": "Severe"
+        }
+      ],
+      "previousMedicalConditions": [
+        {
+          "id": 6,
+          "patientId": 102,
+          "medicalHistoryId": 2,
+          "key": "Asthma",
+          "value": "Managed with inhaler"
+        }
+      ],
+      "medications": [
+        {
+          "id": 2,
+          "patientId": 102,
+          "appoinmentId": 1002,
+          "medicalHistoryId": 2,
+          "name": "Albuterol",
+          "dosage": "90mcg",
+          "frequency": "As needed",
+          "isCurrent": "Yes"
+        }
+      ],
+      "surgicalHistory": [],
+      "diagnosticTest": [
+        {
+          "id": 2,
+          "patientId": 102,
+          "medicalHistoryId": 2,
+          "labTestName": "Chest X-Ray",
+          "labTestDate": "2023-07-10",
+          "result": "Clear",
+          "image": "chest_xray.png",
+          "imageFindings": "No abnormalities detected"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "patientId": 103,
+      "appoinemntId": 1003,
+      "allergies": [],
+      "previousMedicalConditions": [
+        {
+          "id": 7,
+          "patientId": 103,
+          "medicalHistoryId": 3,
+          "key": "High Cholesterol",
+          "value": "Controlled with diet"
+        }
+      ],
+      "medications": [
+        {
+          "id": 3,
+          "patientId": 103,
+          "appoinmentId": 1003,
+          "medicalHistoryId": 3,
+          "name": "Atorvastatin",
+          "dosage": "20mg",
+          "frequency": "Once a day",
+          "isCurrent": "Yes"
+        }
+      ],
+      "surgicalHistory": [
+        {
+          "id": 2,
+          "patientId": 103,
+          "medicalHistoryId": 3,
+          "procedureName": "Gallbladder Removal",
+          "procedureDate": "2018-04-12",
+          "doctorName": "Dr. Lee",
+          "hospitalName": "General Hospital"
+        }
+      ],
+      "diagnosticTest": [
+        {
+          "id": 3,
+          "patientId": 103,
+          "medicalHistoryId": 3,
+          "labTestName": "Lipid Panel",
+          "labTestDate": "2023-08-05",
+          "result": "Elevated LDL",
+          "image": "lipid_panel_report.png",
+          "imageFindings": "High LDL levels detected"
+        }
+      ]
+    }
+  ]
+  
