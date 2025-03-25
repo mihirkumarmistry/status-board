@@ -40,20 +40,6 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-12">
-                <div class="form-group mb-3">
-                  <label class="form-label" for="mobile">Mobile Number*</label>
-                  <input id="mobile" type="text" formControlName="mobile" placeholder="Enter Mobile Number"
-                    class="form-control" />
-                  <div>
-                    @if(registerForm.get('mobile').invalid && registerForm.get('mobile').touched){
-                    @if(registerForm.get('mobile').errors && registerForm.get('mobile').errors['required']){
-                    <small class="text-danger">Mobile number is required.</small>
-                    }
-                    }
-                  </div>
-                </div>
-              </div>
             </div>
             <div class="form-group mb-3">
               <label class="form-label" for="email">Email Address*</label>

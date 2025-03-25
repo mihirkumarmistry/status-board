@@ -1,0 +1,72 @@
+<div class="cal-box">
+    <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
+
+<ng-template #calModel let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Schedule an event for 
+            <span class="text-primary">{{selectedDate | date: 'd MMMM, y'}}</span>
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        @for (event of dateEvents; track event) {
+        <div class="event" [style]="{'background': event.color}">
+            <div class="d-flex">
+                <div class="time">{{event.start | date: 'hh:mma' | lowercase }} - {{event.end | date: 'hh:mma' | lowercase }}</div>
+                <div class="title">
+                    {{event.title}}
+                </div>
+            </div>
+            <i antIcon type="delete" theme="outline" (click)="onDeleteEvent(event)"></i>
+        </div>
+        }
+
+        <div class="d-flex justify-content-center border-primary text-primary add-btn" (click)="onAddEvent()">
+            Add
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancel</button>
+    </div>
+</ng-template>
+
+<ng-template #editModel let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Add</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-8 form-group w-75">
+                <label>Message</label>
+                <input list="titleList" type="text" [(ngModel)]="addEvent.title" class="form-control">
+            </div>
+            <div class="col-4 form-group w-25">
+                <label>Color</label>
+                <select class="form-control" [(ngModel)]="addEvent.color">
+                    @for (item of eventColors; track item) {
+                        <option [value]="item" [style]="{color: item}">{{item | titlecase}}</option>
+                    }
+                </select>
+                <datalist id="titleList">
+                    @for (item of eventTitles; track item) {
+                        <option [value]="item"></option>
+                    }
+                </datalist>
+            </div>
+            <div class="col-6 form-group">
+                <label>Start Time</label>
+                <ngb-timepicker [(ngModel)]="addEvent.start" [meridian]="true" />
+            </div>
+            <div class="col-6 form-group">
+                <label>End Time</label>
+                <ngb-timepicker [(ngModel)]="addEvent.end" [meridian]="true" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="onSaveEvent(); modal.close()">Save</button>
+    </div>
+</ng-template>

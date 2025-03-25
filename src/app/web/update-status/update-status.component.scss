@@ -1,0 +1,77 @@
+.status {
+    padding: 24px 16px;
+    border: 1px solid #b3282d;
+    border-radius: 8px;
+    background-color: #f7e9ea;
+}
+
+.divider {
+    border-right: 2px solid #a5a5a5;
+}
+
+.preview {
+    background: #0079ff;
+    border-radius: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr); /* 16 equal columns */
+    grid-template-rows: repeat(2, 1fr);    /* 2 equal rows */
+    gap: 10px;                            /* Spacing between the boxes */
+    width: 100%;                          /* Full width */
+    height: auto;                         /* Auto height based on content */
+    overflow: hidden;                     /* Prevent overflow */
+  }
+  
+  .box {
+    background-color: #003978;
+    color: aliceblue;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+  }
+  
+  /* Media query for smaller screens (like mobile) */
+  @media (max-width: 768px) {
+    .preview {
+        background: #0079ff;
+        border-radius: 8px;
+    }
+
+    .grid-container {
+      grid-template-columns: repeat(16, 1fr); /* 16 columns on mobile */
+      grid-template-rows: repeat(2, 1fr);    /* 2 rows on mobile */
+      gap: 8px;                            /* Spacing between the boxes */
+      height: auto;                          /* Allow height to adjust */
+    }
+  
+    .box {
+      font-size: 16px; /* Smaller font size for mobile */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .divider {
+        border-top: 2px solid #a5a5a5;
+        border-right: none;
+    }
+
+    .preview {
+        background: #0079ff;
+        border-radius: 6px;
+    }
+
+    .grid-container {
+      grid-template-columns: repeat(16, 1fr); /* 16 columns on very small screens */
+      gap: 6px;                            /* Spacing between the boxes */
+      grid-template-rows: repeat(2, 1fr);    /* 2 rows on very small screens */
+    }
+  
+    .box {
+      font-size: 16px; /* Even smaller font size for very small screens */
+    }
+  }
+    

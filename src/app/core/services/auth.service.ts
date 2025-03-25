@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { LoginReq, LoginResp, OtpReq, OtpResp, RegisterReq, RegisterResp } from '@core/model/auth.model';
-import { Observable, Subject } from 'rxjs';
-import { ApiService } from '@service/api.service';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { LoginReq, LoginResp, RegisterReq, RegisterResp } from '@core/model/auth.model';
 import { ApiErrorService } from '@service/api-error.service';
+import { ApiService } from '@service/api.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -19,12 +19,7 @@ export class AuthService {
         private apiErrorService: ApiErrorService,
     ) { }
 
-    public generateOtp(data: OtpReq): Observable<OtpResp> {
-        return this.apiService.postOtp(data);
-    }
-
     public login(data: LoginReq): void {
-
         this.spinner.show();
 
         this.apiService.postLogin(data).subscribe({

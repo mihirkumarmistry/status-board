@@ -28,7 +28,6 @@ export default class RegisterComponent {
     this.registerForm = this.fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      mobile: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
@@ -41,7 +40,6 @@ export default class RegisterComponent {
       const param: RegisterReq = {
         firstname: formData.firstname,
         lastname: formData.lastname,
-        mobile: formData.mobile,
         email: formData.email,
         password: formData.password
       }

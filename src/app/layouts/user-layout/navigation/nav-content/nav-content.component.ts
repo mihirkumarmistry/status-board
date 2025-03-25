@@ -19,10 +19,12 @@ import {
   DollarOutline,
   FontSizeOutline,
   LoginOutline,
+  MessageOutline,
   PlusCircleOutline,
   PlusOutline,
   ProfileOutline,
   QuestionOutline,
+  ScheduleOutline,
 } from '@ant-design/icons-angular/icons';
 import { environment } from '../../../../../environments/environment.prod';
 import { SystemUserType } from '../../../../core/enums/system-user-type.enum';
@@ -71,6 +73,8 @@ export class NavContentComponent implements OnInit, AfterViewInit {
         CalendarOutline,
         PlusCircleOutline,
         PlusOutline,
+        ScheduleOutline,
+        MessageOutline,
       ]
     );
     this.navigations = NavigationItems;

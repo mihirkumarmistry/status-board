@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { OtpReq, OtpResp } from '@core/model/auth.model';
+import { LoginReq } from '@core/model/auth.model';
 import { AuthService } from '@core/services/auth.service';
-import { ApiErrorService } from '@service/api-error.service';
-import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerComponent } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +17,7 @@ export default class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
-    private spinner: NgxSpinnerService,
-    private apiErrorService: ApiErrorService) { }
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -33,25 +30,13 @@ export default class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       // Input sanitization
       const value = this.loginForm.value;
-      const param: OtpReq = {
+      const param: LoginReq = {
         email: value.email,
         password: value.password
       };
 
-      this.spinner.show();
-
       // Call Generate Otp
-      this.authService.generateOtp(param).subscribe({
-        next: (resp: OtpResp) => {
-          console.log(resp.message);
-          this.spinner.hide();
-          sessionStorage.setItem('email', param.email);
-        },
-        error: () => {
-          this.spinner.hide();
-          this.apiErrorService.toastMessage('Error', 'Error!', 'Failed to sign-in!');
-        }
-      });
+      this.authService.login(param);
     }
   }
 }
