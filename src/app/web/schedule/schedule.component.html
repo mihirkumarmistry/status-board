@@ -11,7 +11,7 @@
     </div>
     <div class="modal-body">
         @for (event of dateEvents; track event) {
-        <div class="event" [style]="{'background': event.color}">
+        <div class="event" [style]="{'border-color': event.color, 'color': event.color}">
             <div class="d-flex">
                 <div class="time">{{event.start | date: 'hh:mma' | lowercase }} - {{event.end | date: 'hh:mma' | lowercase }}</div>
                 <div class="title">
@@ -22,7 +22,7 @@
         </div>
         }
 
-        <div class="d-flex justify-content-center border-primary text-primary add-btn" (click)="onAddEvent()">
+        <div class="d-flex justify-content-center add-btn" (click)="onAddEvent()">
             Add
         </div>
     </div>

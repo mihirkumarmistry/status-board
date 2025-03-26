@@ -17,6 +17,7 @@
     color: aliceblue;
     border-radius: 8px;
     margin-bottom: 8px;
+    border: 2px solid;
 
     .time {
         width: 160px;
@@ -43,10 +44,8 @@
     font-size: medium;
     border: 2px solid;
     border-radius: 8px;
-    &:hover {
-        transition: 300ms;
-        background-color: #f7e9ea;
-    }
+    color: aliceblue;
+    background-color: #b3282d;
 }
 
 

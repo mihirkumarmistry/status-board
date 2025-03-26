@@ -12,7 +12,7 @@ import { ApiService } from '@service/api.service';
 export class UpdateStatusComponent {
   range: number[] = Array.from({ length: 16 }, (_, i) => i);
   profName: string = "Prof. Miguel";
-  status: string = "Busy"
+  status: string = "In Class"
   messgaeList: string[] = ["In A Meeting", "Available", "Busy", "Out Of Office", "In Class", "On Break", "Do Not Disturb", "Available Soon"];
 
   constructor(private apiService: ApiService) {

@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginReq, LoginResp, RegisterReq, RegisterResp } from '@core/model/auth.model';
 import { ScheduleReq, ScheduleResp } from '@core/model/schedule.model';
@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 export class ApiService {
   readonly ApiUrl = `${environment.apiUrl}`;
   readonly NodeUrl = `${environment.nodeUrl}`;
+  // readonly NodeUrl = `${environment.auNodeUrl}`;
+  
   constructor(private http: HttpClient) { }
 
   readonly WebAPIs = {
@@ -44,6 +46,8 @@ export class ApiService {
 
   // Update message on NodeMCU
   public updateMessage(name: string, message: string) {
+    debugger
+    console.log(`${this.NodeUrl}/updateMessage?message=${message}&name=${name}`);
     this.http.get(`${this.NodeUrl}/updateMessage?message=${message}&name=${name}`)
       .subscribe(response => {
         console.log(response);
