@@ -87,6 +87,8 @@ export class DefaultComponent implements OnInit {
           const eventDate = `${new Date(event.start).getFullYear()}-${new Date(event.start).getMonth()+1}-${new Date(event.start).getDate()}`;
           return eventDate === todayDate;
         });
+
+        this.todayEvents = this.todayEvents.sort((a,b) => new Date(a.start).getTime() - new Date(b.start).getTime());
       },
       error: () => {
         this.apiErrorService.toastMessage('Error', 'Failed to get sechedule', 'Error');

@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   readonly ApiUrl = `${environment.apiUrl}`;
-  readonly NodeUrl = `${environment.nodeUrl}`;
-  // readonly NodeUrl = `${environment.auNodeUrl}`;
+  // readonly NodeUrl = `${environment.nodeUrl}`;
+  readonly NodeUrl = `${environment.auNodeUrl}`;
   
   constructor(private http: HttpClient) { }
 
@@ -19,7 +19,7 @@ export class ApiService {
     // Authentication and MFA
     Create: `${this.ApiUrl}/user/create/`,
     Login: `${this.ApiUrl}/user/login/`,
-    Schedule: `${this.ApiUrl}/user/schedule`,
+    Schedule: `${this.ApiUrl}/user/schedule`
   }
 
   // login User

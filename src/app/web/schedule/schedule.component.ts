@@ -69,13 +69,15 @@ export class ScheduleComponent implements OnInit {
   private handleDateClick(arg: any): void {
     this.dateEvents = [];
     const dateToHandle = arg.dateStr.split("-");
-    this.selectedDate = new Date(dateToHandle[0], +dateToHandle[1]-1, dateToHandle[2]);
+    this.selectedDate = new Date(dateToHandle[0], +dateToHandle[1] - 1, dateToHandle[2]);
     this.dateEvents = this.events.filter(event => {
       const eventStart = new Date(event.start);
       const eventStartDate = eventStart.toISOString().split('T')[0];
       const selectedDateStr = this.selectedDate.toISOString().split('T')[0];
       return selectedDateStr == eventStartDate;
     });
+    
+    this.dateEvents = this.dateEvents.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
     this.openModel(this.calModel);
   }
 
@@ -109,6 +111,8 @@ export class ScheduleComponent implements OnInit {
             const selectedDateStr = this.selectedDate.toISOString().split('T')[0];
             return selectedDateStr == eventStartDate;
           });
+
+          this.dateEvents = this.dateEvents.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
         }
       },
       error: () => {
