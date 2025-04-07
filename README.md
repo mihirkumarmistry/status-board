@@ -48,34 +48,83 @@ Make sure the following tools are installed:
   ```bash
   npm install -g @angular/cli
 
+## 🖥️ Running the Django Backend
 
-<p align="center">
-  <img src="https://github.com/mihirkumarmistry/status-board/blob/main/src/assets/images/logo-dark.svg" width="400" height="200">
-</p>
+1. Navigate to your Django backend project directory.
 
-# Status Board
-**Status Board** is an application that provides an easy-to-use status update board for a professor's office. An electronic device made using the NodeMCU receives messages from the web application and displays them on the board according to the schedule.
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv env
+   source env/bin/activate  # On Windows: env\Scripts\activate
+   ```
 
-# Steps to run the applications
-## Prerequisites
-Before setting up the project, you have the following installed:
-1. Install latest version of **node** v22.13.1 or higher. [Download Node](https://nodejs.org/en/download)
-2. Install Angular CLI using command. ```npm install -g @angular/cli```
-3. Run backend project by following the steps mention in readme file.
+3. Install backend dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Steps to run angular application
-1. Clone [Repository](https://github.com/mihirkumarmistry/status-board.git) locally.
-2. Go to project file and install dependencies using this command ```npm install --force```
-3. Once all the depandancy install successfully run this command to run appllication ```npm run start```
+4. Run migrations:
+   ```bash
+   python manage.py migrate
+   ```
 
-## Steps to configure the Node MCU
-We didn't deploy the backend to server. So, every time we run the backed on different comuter we need to configure the Node MCU.
-1. Connect your computer to the WiFi connection.
-2. Record you device IPv4.
-3. Run the backed project using the ```python manage.py runserver 0.0.0.0:8000```
-4. <img width="607" alt="image" src="https://github.com/user-attachments/assets/b1c6a620-4c2e-47ad-b505-e157c78a38f5" />
-  1. See Red Box: Replace the the WiFi Credantial according to your WiFi network.
-  2. See Green Box: Replace the IP address in linke (10.8.4.104) with your device IPv4.
-  3. See Blue Box: Replace first 3 part of the IP with your device IPv4.
-5. Upload this code to Node MCU using the [Arduino IDE](https://www..cc/en/software).
+5. Start the development server:
+   ```bash
+   python manage.py runserver 0.0.0.0:8000
+   ```
+---
 
+## 💻 Running the Angular Frontend
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mihirkumarmistry/status-board.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd status-board
+   ```
+
+3. Install the dependencies:
+   ```bash
+   npm install --force
+   ```
+
+4. Run the Angular application:
+   ```bash
+   npm run start
+   ```
+
+The app will be available at:  
+➡️ `http://localhost:4200`
+
+---
+
+## ⚙️ Configuring the NodeMCU
+
+Since the backend is running locally, you must update the NodeMCU every time the backend runs on a different computer.
+
+### 🔧 Steps to Configure
+
+1. Connect your computer to the Wi-Fi network.
+
+2. Find your computer’s IPv4 address:  
+   - Windows: `ipconfig`  
+   - macOS/Linux: `ifconfig`
+
+3. Run the Django backend:  
+   ```bash
+   python manage.py runserver 0.0.0.0:8000
+   ```
+
+4. Open the Arduino code and make the following changes:  
+   <img width="607" alt="image" src="https://github.com/user-attachments/assets/b1c6a620-4c2e-47ad-b505-e157c78a38f5" />
+
+   - 🔴 **Red Box**: Replace the Wi-Fi credentials (SSID and password) with your current network.
+   - 🟢 **Green Box**: Update the API URL (e.g., `http://10.8.4.104:8000`) with your device’s IPv4.
+   - 🔵 **Blue Box**: Match the first three parts of the IP address logic with your computer’s IPv4.
+
+5. Upload the updated code to the NodeMCU using the [Arduino IDE](https://www.arduino.cc/en/software).
+
+---
