@@ -27,9 +27,21 @@ export const routes: Routes = [
         // general
         {
           path: appRoutes.Dashboard,
-          // canActivate: [AuthGuard],
-          // data: { allowedUserTypes: [SystemUserType.User, SystemUserType.Admin, SystemUserType.Master] },
+          canActivate: [AuthGuard],
+          data: { allowedUserTypes: [SystemUserType.User, SystemUserType.Admin, SystemUserType.Master] },
           loadComponent: () => import('./web/dashboard/dashboard.component').then((c) => c.DefaultComponent)
+        },
+        {
+          path: appRoutes.StatusUpdate,
+          canActivate: [AuthGuard],
+          data: { allowedUserTypes: [SystemUserType.User, SystemUserType.Admin, SystemUserType.Master] },
+          loadComponent: () => import('./web/update-status/update-status.component').then((c) => c.UpdateStatusComponent)
+        },
+        {
+          path: appRoutes.Schedule,
+          canActivate: [AuthGuard],
+          data: { allowedUserTypes: [SystemUserType.User, SystemUserType.Admin, SystemUserType.Master] },
+          loadComponent: () => import('./web/schedule/schedule.component').then((c) => c.ScheduleComponent)
         },
         {
           path: 'sample-page',

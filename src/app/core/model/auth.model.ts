@@ -1,15 +1,6 @@
-export class OtpReq {
-    email: string;
-    password: string;
-}
-
-export class OtpResp {
-    message: string;
-}
-
 export class LoginReq {
     email: string;
-    otp: number;
+    password: string;
 }
 
 export class LoginResp {
@@ -24,7 +15,6 @@ export class LoginResp {
 export class RegisterReq {
     firstname: string;
     lastname: string;
-    mobile: string;
     email: string;
     password: string;
 }
@@ -32,7 +22,6 @@ export class RegisterReq {
 export class RegisterResp {
     firstname: string;
     lastname: string;
-    mobile: string;
     email: string;
     password: string;
 }

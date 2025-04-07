@@ -35,13 +35,21 @@ export const NavigationItems: NavigationItem[] = [
         icon: 'dashboard',
       },
       {
-        id: 'sample-page',
-        title: 'Sample Page',
+        id: 'status-update',
+        title: 'Status Update',
         type: 'item',
-        url: '/sample-page',
         classes: 'nav-item',
-        icon: 'chrome',
+        url: '/status-update',
+        icon: 'message',
       },
+      {
+        id: 'schedule',
+        title: 'Schedule',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/schedule',
+        icon: 'schedule',
+      }
     ]
   }
 ];

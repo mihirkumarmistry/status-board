@@ -1,0 +1,72 @@
+.cal-box {
+    display: flex;
+    justify-content: center;
+
+    full-calendar {
+        width: 70%;
+    }
+}
+
+.event {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: medium;
+    font-weight: bold;
+    color: aliceblue;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 2px solid;
+
+    .time {
+        width: 160px;
+    }
+
+    .title {
+        border-left: 2px solid;
+        padding-left: 16px;
+    }
+
+    i {
+        margin-right: 4px;
+        cursor: pointer;
+        border: 2px solid;
+        padding: 1px 4px 2px 4px;
+        border-radius: 5px;
+    }
+}
+
+.add-btn {
+    padding: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: medium;
+    border: 2px solid;
+    border-radius: 8px;
+    color: aliceblue;
+    background-color: #b3282d;
+}
+
+
+@media (max-width: 480px) {
+    .cal-box {
+        display: flex;
+        justify-content: center;
+
+        full-calendar {
+            width: 100%;
+            height: calc(100vh - 30vh);
+        }
+    }
+}
+
+::ng-deep .fc-prev-button {
+    background-color: #b3282d !important;
+    border-color: #b3282d !important;
+}
+
+::ng-deep .fc-next-button {
+    background-color: #b3282d !important;
+    border-color: #b3282d !important;
+}

@@ -1,31 +1,52 @@
-.card {
-  .card-body.dashboard-card {
-    padding: 18px;
-    padding-bottom: 20px;
+.today-schedule {
+  border: 2px solid;
+  border-radius: 8px;
+  padding: 16px 16px;
+  h4 {
+    padding-bottom: 12px;
+    border-bottom: 1px solid;
+    margin-bottom: 24px;
   }
 }
 
-.user-group {
-  img {
-    position: relative;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    z-index: 2;
-    transition: all 0.1s ease-in-out;
-    border: 2px solid var(--bs-white);
-    + img {
-      margin-left: -14px;
-    }
-    &:hover {
-      z-index: 5;
-    }
+.event {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-size: medium;
+  font-weight: bold;
+  color: aliceblue;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border: 2px solid;
+
+  .time {
+      width: 160px;
+  }
+
+  .title {
+      border-left: 2px solid;
+      padding-left: 16px;
+  }
+
+  i {
+      margin-right: 4px;
+      cursor: pointer;
+      border: 2px solid;
+      padding: 1px 4px 2px 4px;
+      border-radius: 5px;
   }
 }
 
-.badge-circle {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.add-btn {
+  padding: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: medium;
+  border: 2px solid;
+  border-radius: 8px;
+  margin-top: 16px;
+  color: aliceblue;
+  background: #b3282d;
 }
