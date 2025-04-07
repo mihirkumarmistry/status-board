@@ -118,7 +118,7 @@ Since the backend is running locally, you must update the NodeMCU every time the
    python manage.py runserver 0.0.0.0:8000
    ```
 
-4. Open the Arduino code and make the following changes:  
+4. Open the Arduino code and make the following changes: [Node MCU CODE](https://github.com/mihirkumarmistry/status-board/blob/main/MCU/sketch_wifi/sketch_au.ino/sketch_au.ino.ino)
    <img width="607" alt="image" src="https://github.com/user-attachments/assets/b1c6a620-4c2e-47ad-b505-e157c78a38f5" />
 
    - 🔴 **Red Box**: Replace the Wi-Fi credentials (SSID and password) with your current network.
