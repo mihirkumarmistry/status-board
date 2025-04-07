@@ -23,8 +23,8 @@ We didn't deploy the backend to server. So, every time we run the backed on diff
 2. Record you device IPv4.
 3. Run the backed project using the ```python manage.py runserver 0.0.0.0:8000```
 4. <img width="607" alt="image" src="https://github.com/user-attachments/assets/b1c6a620-4c2e-47ad-b505-e157c78a38f5" />
-  -- See Red Box: Replace the the WiFi Credantial according to your WiFi network.
-  -- See Green Box: Replace the IP address in linke (10.8.4.104) with your device IPv4.
-  -- See Blue Box: Replace first 3 part of the IP with your device IPv4.
+  See Red Box: Replace the the WiFi Credantial according to your WiFi network.
+  See Green Box: Replace the IP address in linke (10.8.4.104) with your device IPv4.
+  See Blue Box: Replace first 3 part of the IP with your device IPv4.
 5. Upload this code to Node MCU using the [Arduino IDE](https://www..cc/en/software).
 
