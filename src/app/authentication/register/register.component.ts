@@ -44,7 +44,6 @@ export default class RegisterComponent {
         password: formData.password
       }
       // Call auth process 
-      // On responce toggle to Otp Page
       this.authService.registerUser(param).subscribe({
         next: (resp) => {
           this.apiErrorService.toastMessage('Success', 'Success');

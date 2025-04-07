@@ -35,7 +35,6 @@ export default class LoginComponent implements OnInit {
         password: value.password
       };
 
-      // Call Generate Otp
       this.authService.login(param);
     }
   }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginReq, LoginResp, RegisterReq, RegisterResp } from '@core/model/auth.model';
 import { ScheduleReq, ScheduleResp } from '@core/model/schedule.model';
@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   readonly ApiUrl = `${environment.apiUrl}`;
-  // readonly NodeUrl = `${environment.nodeUrl}`;
-  readonly NodeUrl = `${environment.auNodeUrl}`;
+  readonly NodeUrl = `${environment.nodeUrl}`;
+  // readonly NodeUrl = `${environment.auNodeUrl}`;
   
   constructor(private http: HttpClient) { }
 
@@ -19,7 +19,9 @@ export class ApiService {
     // Authentication and MFA
     Create: `${this.ApiUrl}/user/create/`,
     Login: `${this.ApiUrl}/user/login/`,
-    Schedule: `${this.ApiUrl}/user/schedule`
+    Schedule: `${this.ApiUrl}/user/schedule`,
+    Quickupdate: `${this.ApiUrl}/user/quickupdate`,
+    Ping: `${this.ApiUrl}/user/ping`
   }
 
   // login User
@@ -40,8 +42,7 @@ export class ApiService {
     return this.http.post<ScheduleResp>(this.WebAPIs.Schedule, data);
   }
   public deleteSchedule(id: number): Observable<any> {
-    const options = { body: { id: id } };
-    return this.http.delete(this.WebAPIs.Schedule, options);
+    return this.http.delete(`${this.WebAPIs.Schedule}?id=${id}`);
   }
 
   // Update message on NodeMCU
@@ -52,6 +53,16 @@ export class ApiService {
       .subscribe(response => {
         console.log(response);
       });
+  }
+
+  public quickUpdate(message: string): Observable<any> {
+    const params = new HttpParams().set('message', message);
+    return this.http.post(this.WebAPIs.Quickupdate, {}, { params });
+  }
+
+  public pingScheduler(email: string): Observable<any> {
+    const params = new HttpParams().set('email', email);
+    return this.http.post(this.WebAPIs.Ping, {}, { params });
   }
   
   // handle errors

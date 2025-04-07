@@ -1,6 +1,6 @@
 export class ScheduleReq {
-    end: Date;
-    start: Date;
+    end: any;
+    start: any;
     title: string;  
     color: string;
 }

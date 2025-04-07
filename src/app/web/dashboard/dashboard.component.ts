@@ -26,21 +26,21 @@ import { ApiService } from '@service/api.service';
 export class DefaultComponent implements OnInit {
   @ViewChild('editModel') editModel!: TemplateRef<any>;
 
-  protected todayDate: Date = new Date();
-  private modalService = inject(NgbModal);
+  public todayDate: Date = new Date();
+  public modalService = inject(NgbModal);
 
-  protected events: any[] = [];
-  protected todayEvents: any[] = [];
+  public events: any[] = [];
+  public todayEvents: any[] = [];
 
-  protected addEvent = {
+  public addEvent = {
     title: "",
     color: "",
     start: { hour: 0, minute: 0 },
     end: { hour: 0, minute: 0 }
   };
 
-  protected eventTitles = ["In A Meeting", "Available", "Busy", "Out Of Office", "In Class", "On Break", "Do Not Disturb", "Available Soon"];
-  protected eventColors = ['green', 'blue', 'red', 'orange', 'purple'];
+  public eventTitles = ["In A Meeting", "Available", "Busy", "Out Of Office", "In Class", "On Break", "Do Not Disturb", "Available Soon"];
+  public eventColors = ['green', 'blue', 'red', 'orange', 'purple'];
 
   // constructor
   constructor(
@@ -62,11 +62,11 @@ export class DefaultComponent implements OnInit {
     this.getAllEvent();
   }
 
-  protected openModel(content: TemplateRef<any>): void {
+  public openModel(content: TemplateRef<any>): void {
     this.modalService.open(content, { centered: true });
   }
 
-  protected onAddEvent(): void {
+  public onAddEvent(): void {
     this.addEvent = {
       title: "",
       color: "",
@@ -76,7 +76,7 @@ export class DefaultComponent implements OnInit {
     this.openModel(this.editModel);
   }
 
-  protected getAllEvent(): void {
+  public getAllEvent(): void {
     this.apiService.getSchedule().subscribe({
       next: (resp: any) => {
         const today = new Date();
@@ -96,7 +96,7 @@ export class DefaultComponent implements OnInit {
     })
   }
 
-  protected onSaveEvent(): void {
+  public onSaveEvent(): void {
     const startDate = new Date(this.todayDate);
     startDate.setHours(this.addEvent.start.hour);
     startDate.setMinutes(this.addEvent.start.minute);
@@ -122,7 +122,7 @@ export class DefaultComponent implements OnInit {
     });
   }
 
-  protected onDeleteEvent(data: ScheduleResp): void {
+  public onDeleteEvent(data: ScheduleResp): void {
     this.apiService.deleteSchedule(data.id).subscribe({
       next: () => {
         this.getAllEvent();

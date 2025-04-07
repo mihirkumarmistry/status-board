@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ApiErrorService } from '@service/api-error.service';
 import { ApiService } from '@service/api.service';
 
 @Component({
@@ -15,7 +16,10 @@ export class UpdateStatusComponent {
   status: string = "In Class"
   messgaeList: string[] = ["In A Meeting", "Available", "Busy", "Out Of Office", "In Class", "On Break", "Do Not Disturb", "Available Soon"];
 
-  constructor(private apiService: ApiService) {
+  constructor(
+    private apiService: ApiService,
+    private apiErrorService: ApiErrorService
+  ) {
   }
 
   onSelectStatus(status: string): void {
@@ -24,27 +28,19 @@ export class UpdateStatusComponent {
   }
 
   updateStatus(): void {
-    const name = this.profName;
-    const status = this.status;
+    this.apiService.quickUpdate(this.status).subscribe({
+      next: res => console.log('API success:', res),
+      error: err => console.error('API error:', err)
+    });
+  }
 
-    let formattedName = name.replace(/ /g, '+');
-    let formattedStatus = status.replace(/ /g, '+');
-
-    if (formattedName.length < 16) {
-      const paddingLength = 16 - formattedName.length;
-      formattedName += '+'.repeat(paddingLength);
-    } else if (formattedName.length > 16) {
-      formattedName = formattedName.substring(0, 16);
-    }
-
-    if (formattedStatus.length < 16) {
-      const paddingLength = 16 - formattedStatus.length;
-      formattedStatus += '+'.repeat(paddingLength);
-    } else if (formattedStatus.length > 16) {
-      formattedStatus = formattedStatus.substring(0, 16);
-    }
-
-    this.apiService.updateMessage(formattedName, formattedStatus);
+  pingScheduler(): void {
+    let user = JSON.parse(sessionStorage.getItem('user')); 
+    this.apiService.pingScheduler(user.email).subscribe({
+      next: (resp) => {
+        this.apiErrorService.toastMessage('Success', 'Message will update according today\'s schedule');
+      }
+    })
   }
 
 }

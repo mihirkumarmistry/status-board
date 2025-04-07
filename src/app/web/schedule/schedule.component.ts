@@ -11,6 +11,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { NgbModal, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { ApiErrorService } from '@service/api-error.service';
 import { ApiService } from '@service/api.service';
+import moment from 'moment-timezone';
+
 
 @Component({
   selector: 'app-schedule',
@@ -25,7 +27,7 @@ export class ScheduleComponent implements OnInit {
 
   private modalService = inject(NgbModal);
   protected selectedDate: Date = new Date();
-  protected dateEvents: any[] = [];
+  public dateEvents: any[] = [];
 
   protected addEvent = {
     title: "",
@@ -34,13 +36,13 @@ export class ScheduleComponent implements OnInit {
     end: { hour: 0, minute: 0 }
   };
 
-  protected eventTitles = ["In A Meeting", "Available", "Busy", "Out Of Office", "In Class", "On Break", "Do Not Disturb", "Available Soon"];
-  protected eventColors = ['green', 'blue', 'red', 'orange', 'purple'];
-  protected events = [];
+  public eventTitles = ["In A Meeting", "Available", "Busy", "Out Of Office", "In Class", "On Break", "Do Not Disturb", "Available Soon"];
+  public eventColors = ['green', 'blue', 'red', 'orange', 'purple'];
+  public events = [];
 
   calendarOptions: CalendarOptions = {
     editable: true,
-    weekends: false,
+    weekends: true,
     events: this.events,
     themeSystem: 'bootstrap5',
     initialView: 'dayGridMonth',
@@ -66,7 +68,7 @@ export class ScheduleComponent implements OnInit {
     this.getAllEvent();
   }
 
-  private handleDateClick(arg: any): void {
+  public handleDateClick(arg: any): void {
     this.dateEvents = [];
     const dateToHandle = arg.dateStr.split("-");
     this.selectedDate = new Date(dateToHandle[0], +dateToHandle[1] - 1, dateToHandle[2]);
@@ -81,15 +83,15 @@ export class ScheduleComponent implements OnInit {
     this.openModel(this.calModel);
   }
 
-  protected openModel(content: TemplateRef<any>): void {
+  public openModel(content: TemplateRef<any>): void {
     this.modalService.open(content, { centered: true });
   }
 
-  protected closeModel(): void {
+  public closeModel(): void {
     this.modalService.dismissAll();
   }
 
-  protected onAddEvent(): void {
+  public onAddEvent(): void {
     this.addEvent = {
       title: "",
       color: "",
@@ -99,7 +101,7 @@ export class ScheduleComponent implements OnInit {
     this.openModel(this.editModel);
   }
 
-  protected getAllEvent(): void {
+  public getAllEvent(): void {
     this.apiService.getSchedule().subscribe({
       next: (resp: any) => {
         this.events = resp;
@@ -121,7 +123,7 @@ export class ScheduleComponent implements OnInit {
     })
   }
 
-  protected onSaveEvent(): void {
+  public onSaveEvent(): void {
     const startDate = new Date(this.selectedDate);
     startDate.setHours(this.addEvent.start.hour);
     startDate.setMinutes(this.addEvent.start.minute);
@@ -130,11 +132,14 @@ export class ScheduleComponent implements OnInit {
     endDate.setHours(this.addEvent.end.hour);
     endDate.setMinutes(this.addEvent.end.minute);
 
+    const paramStartTime = moment(startDate).tz('America/Toronto').format();
+    const paramEndTime = moment(endDate).tz('America/Toronto').format();
+
     const param: ScheduleReq = {
       title: this.addEvent.title,
       color: this.addEvent.color,
-      start: startDate,
-      end: endDate,
+      start: paramStartTime,
+      end: paramEndTime,
     };
 
     this.apiService.postSchedule(param).subscribe({
@@ -147,7 +152,7 @@ export class ScheduleComponent implements OnInit {
     });
   }
 
-  protected onDeleteEvent(data: ScheduleResp): void {
+  public onDeleteEvent(data: ScheduleResp): void {
     debugger;
     this.apiService.deleteSchedule(data.id).subscribe({
       next: () => {

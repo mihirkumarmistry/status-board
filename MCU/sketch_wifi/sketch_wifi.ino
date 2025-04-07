@@ -1,9 +1,13 @@
 #include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
 #include <Wire.h>
 #include <LiquidCrystal_PCF8574.h>
 
 const char* ssid = "NodeMCU";
 const char* password = "Node@1234";
+
+// IMPORTANT: Replace 127.0.0.1 with the IP address of your computer if running Django locally
+const char* apiURL = "http://192.168.5.10:8000/securevaultapi/user/ping?email=miguel-garcia-ruiz@algomau.ca";
 
 IPAddress staticIP(192, 168, 5, 100);
 IPAddress gateway(192, 168, 5, 1);
@@ -29,7 +33,6 @@ void setup() {
 
   WiFi.mode(WIFI_STA);
   WiFi.config(staticIP, gateway, subnet); // Set static IP
-
   WiFi.begin(ssid, password);
 
   int attempts = 0;
@@ -46,15 +49,31 @@ void setup() {
     Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
     lcd.setCursor(0, 0);
-    lcd.print("Connected");
+    lcd.print("Connected       ");
     lcd.setCursor(0, 1);
-    lcd.print("Successfully");
+    lcd.print("Successfully    ");
+
+    // Call Backend API
+    HTTPClient http;
+    WiFiClient wifiClient;
+    http.begin(wifiClient, apiURL);
+    int httpCode = http.GET();
+
+    if (httpCode > 0) {
+      String payload = http.getString();
+      Serial.println("API Response:");
+      Serial.println(payload);
+    } else {
+      Serial.print("API call failed: ");
+      Serial.println(http.errorToString(httpCode));
+    }
+    http.end();
   } else {
     Serial.println("\nWiFi connection failed.");
     Serial.println(WiFi.status());
     lcd.setCursor(0, 1);
-    lcd.print("Conn. Failed");
-    while (true);
+    lcd.print("Conn. Failed    ");
+    while (true); // halt
   }
 
   pinMode(LED_BUILTIN, OUTPUT);
@@ -81,29 +100,30 @@ void loop() {
 
     lcd.clear();
     lcd.setCursor(0, 0);
-    lcd.print(name.substring(0, 16)); // Display name on the first line
+    lcd.print(name.substring(0, 16));
+    Serial.println(name.substring(0, 16));
     lcd.setCursor(0, 1);
-    lcd.print(message.substring(0, 16)); // Display message on the second line
+    lcd.print(message.substring(0, 16));
+    Serial.println(message.substring(0, 16));
 
     client.print("HTTP/1.1 200 OK\r\n");
     client.print("Content-Type: application/json\r\n");
-    client.print("Access-Control-Allow-Origin: *\r\n"); // Allow all origins
-    client.print("Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"); // Allow GET, POST, OPTIONS
-    client.print("Access-Control-Allow-Headers: Content-Type, Authorization\r\n"); // Allow Content-Type, Authorization
+    client.print("Access-Control-Allow-Origin: *\r\n");
+    client.print("Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n");
+    client.print("Access-Control-Allow-Headers: Content-Type, Authorization\r\n");
     client.print("\r\n");
     client.print("{\"status\": \"success\", \"name\": \"" + name + "\", \"message\": \"" + message + "\"}");
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 
-  } else if (req.indexOf("OPTIONS") != -1){
-      client.print("HTTP/1.1 200 OK\r\n");
-      client.print("Access-Control-Allow-Origin: *\r\n");
-      client.print("Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n");
-      client.print("Access-Control-Allow-Headers: Content-Type, Authorization\r\n");
-      client.print("Access-Control-Max-Age: 86400\r\n");
-      client.print("\r\n");
-  }
+  } else if (req.indexOf("OPTIONS") != -1) {
+    client.print("HTTP/1.1 200 OK\r\n");
+    client.print("Access-Control-Allow-Origin: *\r\n");
+    client.print("Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n");
+    client.print("Access-Control-Allow-Headers: Content-Type, Authorization\r\n");
+    client.print("Access-Control-Max-Age: 86400\r\n");
+    client.print("\r\n");
 
-  else {
+  } else {
     client.print("HTTP/1.1 400 Bad Request\r\n");
     client.print("Content-Type: application/json\r\n");
     client.print("Access-Control-Allow-Origin: *\r\n");

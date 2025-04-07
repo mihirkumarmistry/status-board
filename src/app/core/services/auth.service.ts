@@ -34,7 +34,7 @@ export class AuthService {
             },
             error: () => {
                 this.spinner.hide();
-                this.apiErrorService.toastMessage('Error', 'Failed to verify OTP', 'Failed')
+                this.apiErrorService.toastMessage('Error', 'Failed to authenticate', 'Failed')
             }
         });
     }

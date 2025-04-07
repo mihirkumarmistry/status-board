@@ -3,10 +3,6 @@ export class LoginReq {
     password: string;
 }
 
-export class OtpResp {
-    message: string;
-}
-
 export class LoginResp {
     refresh: string;
     access: string;
