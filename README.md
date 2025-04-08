@@ -48,32 +48,65 @@ Make sure the following tools are installed:
   ```bash
   npm install -g @angular/cli
 
+- **Docker Desktop**  
+  Install Docker Desktop: [Download Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+- **Pgadmin 4**  
+  Install Pgadmin 4  [Download Pgadmin 4](https://www.pgadmin.org/download/)
+
 ## 🖥️ Running the Django Backend
 
-1. Navigate to your Django backend project directory.
+1. Clone [Repository](https://github.com/athul-narayanan/displayboardapi.git) locally.
 
-2. Create and activate a virtual environment:
+cd displayboardapi
+
+2. Install and prepare dependencies using:
    ```bash
-   python -m venv env
-   source env/bin/activate  # On Windows: env\Scripts\activate
+    pip install -r requirements.txt
    ```
 
-3. Install backend dependencies:
+3. Pull the docker image for postgres using:
    ```bash
-   pip install -r requirements.txt
+   docker pull postgres
    ```
 
-4. Run migrations:
+4. Run the docker container using:
+   ```bash
+   docker run --name asepostgres -e POSTGRES_PASSWORD=Algoma@2024 -p 5433:5432 -d postgres
+   ```
+
+5. Create database in the container:
+   ```bash
+   docker exec -it asepostgres psql -U postgres -c "CREATE DATABASE displayboarddatabase"
+   ```
+6. Prepare database migrations for all tables using:
+   ```bash
+   python manage.py makemigrations user
+   ```
+7. Apply Migrations to the database using:
    ```bash
    python manage.py migrate
    ```
-
-5. Start the development server:
+8. Add Entry for user roles by running below SQL commands:
    ```bash
-   python manage.py runserver 0.0.0.0:8000
+    INSERT INTO public.userrole (id, role_name)
+    VALUES (1, 'USER');
+
+    INSERT INTO public.userrole (id, role_name)
+    VALUES (2, 'ADMIN');
+
+    INSERT INTO public.userrole (id, role_name)
+    VALUES (3, 'MASTER');
+   ```
+9. Run the application using:
+   ```bash
+    python manage.py runserver 0.0.0.0:8000
    ```
 ---
+The above command runs the application on port 8000. Make sure that you have installed required dependencies and started postgres sql in docker.
 
+- Once the application is started cron jobs can be started using ```python manage.py runapscheduler```
+- shut down the application manually using ```Ctrl-C```
 ## 💻 Running the Angular Frontend
 
 1. Clone the repository:
