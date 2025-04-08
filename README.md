@@ -119,12 +119,13 @@ Since the backend is running locally, you must update the NodeMCU every time the
    ```
 
 4. Open the Arduino code and make the following changes: [Node MCU CODE](https://github.com/mihirkumarmistry/status-board/blob/main/MCU/sketch_wifi/sketch_au.ino/sketch_au.ino.ino)
-   <img width="607" alt="image" src="https://github.com/user-attachments/assets/b1c6a620-4c2e-47ad-b505-e157c78a38f5" />
+   <img width="607" alt="image" src="https://github.com/user-attachments/assets/bf5ba650-19ab-4a19-aba9-74d39a7eea69" />
 
    - 🔴 **Red Box**: Replace the Wi-Fi credentials (SSID and password) with your current network.
    - 🟢 **Green Box**: Update the API URL (e.g., `http://10.8.4.104:8000`) with your device’s IPv4.
    - 🔵 **Blue Box**: Match the first three parts of the IP address logic with your computer’s IPv4.
+   - 🟤 **Blown Line**: Replace email with your email, you used during the registration process.
 
-5. Upload the updated code to the NodeMCU using the [Arduino IDE](https://www.arduino.cc/en/software).
+6. Upload the updated code to the NodeMCU using the [Arduino IDE](https://www.arduino.cc/en/software).
 
 ---
